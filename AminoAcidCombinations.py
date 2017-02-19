@@ -14,10 +14,10 @@ from time import time
 import os
 import sys
 
-save_filename = '5-7_length_aminoacids.fasta'
 amino_acids = 'ACDEFGHIKLMNPQRSTVWY'
 max_sequence_length = 7 #CAREFUL, TOO MUCH (more than 7) WILL FILL UP HARD DRIVE
-min_sequence_length = 5 #You can change these two numbers
+min_sequence_length = 4 #You can change these two numbers
+save_filename = str(min_sequence_length) + '-' + str(max_sequence_length) + '_length_aminoacids.fasta'
 
 start_time = time() #tracks time at start
 
@@ -46,7 +46,7 @@ with open(save_filename, 'a') as output_file:
             if counter % 1000000 == 0: #for user interface purposes
                 sys.stdout.write('\r')
                 sys.stdout.write(sequence_string)
-                sys.stdout.write(' | percent done: ' + str(counter / (expected_seq_num) * 100) + '%')
+                sys.stdout.write(' | percent done: ' + str(round(((counter / expected_seq_num) * 100), 2)) + '%')
 
                 sys.stdout.flush()
             counter += 1
